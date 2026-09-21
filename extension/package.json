@@ -1,0 +1,24 @@
+{
+  "name": "webtest-agent-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome DevTools capture and bounded exploration client for WebTest Agent",
+  "type": "module",
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/test.mjs",
+    "check": "npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.287",
+    "@types/jsdom": "30.0.0",
+    "@types/node": "22.20.4",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "esbuild": "0.28.2",
+    "jsdom": "29.1.1",
+    "typescript": "5.7.2"
+  }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WebTest Agent review</title>
+  <style>
+    :root{font:15px system-ui;color:#172033;background:#f4f6fb}body{max-width:1100px;margin:2rem auto;padding:0 1rem}
+    main{background:#fff;border:1px solid #dbe1ec;border-radius:12px;padding:1.25rem;box-shadow:0 8px 28px #26395b12}
+    label{display:block;font-weight:650;margin:.8rem 0 .3rem}input,textarea,button{font:inherit}input{padding:.55rem;width:min(35rem,90%)}
+    textarea{box-sizing:border-box;width:100%;min-height:55vh;padding:.75rem;font:13px ui-monospace,monospace;border:1px solid #abb6c8;border-radius:8px}
+    button{padding:.6rem .9rem;margin:.7rem .4rem 0 0;border:0;border-radius:7px;background:#2457d6;color:white;cursor:pointer}
+    button.secondary{background:#56647a}.notice{padding:.7rem;background:#fff6d8;border-radius:7px}.error{color:#9e1c1c;white-space:pre-wrap}
+  </style>
+</head>
+<body><main>
+  <h1>WebTest Agent scenario review</h1>
+  <p class="notice">Use only against origins you own or are authorized to test. Generation remains blocked until a workflow is approved.</p>
+  <label for="plan-id">Plan ID</label><input id="plan-id" autocomplete="off" placeholder="plan-…">
+  <button id="load">Load</button>
+  <label for="editor">Editable plan (names, statuses, assertions, enabled scenarios, and test-data references)</label>
+  <textarea id="editor" spellcheck="false" aria-label="Editable review plan"></textarea>
+  <button id="save" class="secondary">Save edits</button><button id="approve">Approve workflows</button>
+  <p id="status" role="status"></p><pre id="error" class="error"></pre>
+</main><script>
+  const id = document.querySelector('#plan-id'), editor = document.querySelector('#editor'), status = document.querySelector('#status'), error = document.querySelector('#error');
+  let plan;
+  async function call(url, options={}) { const response=await fetch(url,{...options,headers:{'content-type':'application/json',...(options.headers||{})}}); const data=await response.json(); if(!response.ok) throw new Error(data.detail||response.statusText); return data; }
+  function show(value){ plan=value; editor.value=JSON.stringify(value,null,2); id.value=value.planId; status.textContent=`Revision ${value.revision}; status ${value.status}`; error.textContent=''; }
+  document.querySelector('#load').onclick=async()=>{try{show(await call(`/api/v1/plans/${encodeURIComponent(id.value)}`))}catch(e){error.textContent=e.message}};
+  document.querySelector('#save').onclick=async()=>{try{const value=JSON.parse(editor.value); const patch={workflows:value.workflows,assumptions:value.assumptions,uncertainties:value.uncertainties,suppliedTestData:value.suppliedTestData}; show(await call(`/api/v1/plans/${encodeURIComponent(value.planId)}?revision=${value.revision}`,{method:'PATCH',body:JSON.stringify(patch)}))}catch(e){error.textContent=e.message}};
+  document.querySelector('#approve').onclick=async()=>{try{const value=JSON.parse(editor.value); show(await call(`/api/v1/plans/${encodeURIComponent(value.planId)}/approve`,{method:'POST',body:JSON.stringify({workflowIds:value.workflows.filter(w=>w.approval!=='rejected').map(w=>w.workflowId)})}))}catch(e){error.textContent=e.message}};
+</script></body></html>

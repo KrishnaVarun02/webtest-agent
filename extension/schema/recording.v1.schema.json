@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webtest-agent.local/schema/recording.v1.schema.json",
+  "title": "WebTest Agent recording",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "product", "sessionId", "inspectedTabId", "startedAt", "configuration", "actions", "operations", "metadata"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "product": { "const": "WebTest Agent" },
+    "sessionId": { "type": "string", "minLength": 1 },
+    "inspectedTabId": { "type": "integer", "minimum": 0 },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "endedAt": { "type": "string", "format": "date-time" },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedOrigins", "includePatterns", "excludePatterns", "maxOperations"],
+      "properties": {
+        "allowedOrigins": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "format": "uri" } },
+        "includePatterns": { "type": "array", "items": { "type": "string" } },
+        "excludePatterns": { "type": "array", "items": { "type": "string" } },
+        "maxOperations": { "type": "integer", "minimum": 1, "maximum": 1000 }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/action" }
+    },
+    "operations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/operation" }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extensionVersion", "captureScope", "protocols", "formats", "reloadObserved"],
+      "properties": {
+        "extensionVersion": { "type": "string" },
+        "captureScope": { "const": "one-inspected-tab" },
+        "protocols": { "const": ["REST"] },
+        "formats": { "const": ["JSON", "form-urlencoded"] },
+        "reloadObserved": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "header": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value"],
+      "properties": { "name": { "type": "string" }, "value": { "type": "string" } }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "value"],
+      "properties": {
+        "strategy": { "enum": ["test-attribute", "role", "label", "id", "css"] },
+        "value": { "type": "string" },
+        "role": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sessionId", "type", "timestamp", "pageUrl"],
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "type": { "enum": ["click", "input", "select", "navigation", "submit", "back", "wait", "page_change"] },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "pageUrl": { "type": "string" },
+        "locator": { "$ref": "#/$defs/locator" },
+        "value": { "type": "string" },
+        "metadata": { "type": "object" }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sessionId", "timestamp", "pageUrl", "resourceType", "request", "response", "timing", "included"],
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "pageUrl": { "type": "string" },
+        "resourceType": { "enum": ["xhr", "fetch"] },
+        "request": {
+          "type": "object",
+          "required": ["method", "url", "normalizedPath", "query", "headers"],
+          "properties": {
+            "method": { "type": "string" },
+            "url": { "type": "string" },
+            "normalizedPath": { "type": "string" },
+            "query": { "type": "array", "items": { "$ref": "#/$defs/header" } },
+            "headers": { "type": "array", "items": { "$ref": "#/$defs/header" } },
+            "contentType": { "type": "string" },
+            "body": {}
+          }
+        },
+        "response": {
+          "type": "object",
+          "required": ["status", "headers"],
+          "properties": {
+            "status": { "type": "integer" },
+            "statusText": { "type": "string" },
+            "headers": { "type": "array", "items": { "$ref": "#/$defs/header" } },
+            "contentType": { "type": "string" },
+            "body": {},
+            "bodyUnavailableReason": { "type": "string" }
+          }
+        },
+        "timing": {
+          "type": "object",
+          "required": ["totalMs"],
+          "properties": {
+            "totalMs": { "type": "number", "minimum": 0 },
+            "blockedMs": { "type": "number", "minimum": 0 },
+            "dnsMs": { "type": "number", "minimum": 0 },
+            "connectMs": { "type": "number", "minimum": 0 },
+            "sendMs": { "type": "number", "minimum": 0 },
+            "waitMs": { "type": "number", "minimum": 0 },
+            "receiveMs": { "type": "number", "minimum": 0 },
+            "sslMs": { "type": "number", "minimum": 0 }
+          }
+        },
+        "relatedActionId": { "type": "string" },
+        "included": { "type": "boolean" },
+        "exclusionReason": { "enum": ["analytics", "telemetry", "static-resource", "advertisement", "third-party-tracking", "user-excluded"] }
+      }
+    }
+  }
+}

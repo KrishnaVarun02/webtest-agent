@@ -1,0 +1,12 @@
+{
+  "approvedWorkflowIds": [
+    "records-lifecycle"
+  ],
+  "destructiveTestsDefaultEnabled": false,
+  "environmentOnlySecrets": true,
+  "planId": "plan-eb154d982c398b",
+  "planSha256": "f12262ceaad8fa1e055b19e2891ea402241338f6caa1c272a27f489cdce83075",
+  "projectName": "webtest-e2e",
+  "recordingId": "rec-75af1fcd52a78ef764b0",
+  "schemaVersion": "1.0"
+}

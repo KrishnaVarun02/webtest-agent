@@ -1,0 +1,126 @@
+{
+  "enabledScenarioCount": 5,
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "8843adb79e8583ca06c9ad269b97cde2f8a40abe4d0fcc2b01ece84be64cc3c4"
+    },
+    {
+      "path": "README.md",
+      "sha256": "14f8b4161ce900b928d2a88b7f0db71bac1bfdbbc0bda4938932a9ed6d09c70d"
+    },
+    {
+      "path": "generation-report.json",
+      "sha256": "0f07d730cacb3945745eb4295dc85e804cc92d8dbc08c2485df0c1b862bf0803"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "cfa20ae0d387a69b4fa38cd72e11506724ca0297a9af36d87b9eca5097e53d08"
+    },
+    {
+      "path": "src/test/java/framework/ApiKeyAuthProvider.java",
+      "sha256": "b7a5042dcfe05b2bd83f14e2b18315deffacc94b5c39803605c898cb86063a70"
+    },
+    {
+      "path": "src/test/java/framework/AssertionUtility.java",
+      "sha256": "e11da1fe4e55fabff65e4afcdd0d3fb840e09651d603347d6a2f8aac328e4e31"
+    },
+    {
+      "path": "src/test/java/framework/AuthProvider.java",
+      "sha256": "2a3c88d2a32f3ac53df693ef56cad0b40b1370a71026af1360c92a0ed83755a4"
+    },
+    {
+      "path": "src/test/java/framework/AuthProviders.java",
+      "sha256": "253154e17ef6429bb2e4df8890848da75104c907eecc3595ff19c6281d034912"
+    },
+    {
+      "path": "src/test/java/framework/BasicAuthProvider.java",
+      "sha256": "d6b006336e9ba6ae1f5c48c924c88fbfb46b59d85484c327fe5ba7e3f68d3013"
+    },
+    {
+      "path": "src/test/java/framework/BearerTokenAuthProvider.java",
+      "sha256": "85585ca18f4c0a791ba612685439dc2aca14e34c863ba85523686de0bbec6255"
+    },
+    {
+      "path": "src/test/java/framework/Config.java",
+      "sha256": "d91131fbcc3bbade23ac28a66079bd992ea65a5577463a8ea3f00e5f4b8bd450"
+    },
+    {
+      "path": "src/test/java/framework/CookieAuthProvider.java",
+      "sha256": "45de8fb0fa0e375afd8974996f7062592894ef9c04b31827ecac0eafed8e66a5"
+    },
+    {
+      "path": "src/test/java/framework/CustomAuthProvider.java",
+      "sha256": "0d04de667fd7ad1c67e34f785c76bfdc871ac798c08f57118a51470d89028f82"
+    },
+    {
+      "path": "src/test/java/framework/DynamicValueExtractor.java",
+      "sha256": "137ad6592b4a7ad7a68bd2352949d7dcda754a1f70fda972a43280732fec20a2"
+    },
+    {
+      "path": "src/test/java/framework/ExecutionTrace.java",
+      "sha256": "8f70b6d1ca7860a4941e230ea7d85caa8dd24619ac9610fa204c7b826bda0a3d"
+    },
+    {
+      "path": "src/test/java/framework/NoAuthProvider.java",
+      "sha256": "7d643aa6f52d1dc9d42046c759e945e0d9c38277bbdf7a51db0f55f3cff575dd"
+    },
+    {
+      "path": "src/test/java/framework/PollingUtility.java",
+      "sha256": "9f7a8931f90ec23eb589dc1279350678f51ed2d9aec0bea8fd0d2fc30626b36f"
+    },
+    {
+      "path": "src/test/java/framework/RequestDefinition.java",
+      "sha256": "f3c4c7c62fb347d0f0a7e601763e3921df853113a8f6ed9032b01c636356639b"
+    },
+    {
+      "path": "src/test/java/framework/RequestExecutor.java",
+      "sha256": "edc2233dfeaa6dba5e8ff638dc69e42505551f26057efe8d40ba627f7d5514dc"
+    },
+    {
+      "path": "src/test/java/framework/ScenarioContext.java",
+      "sha256": "0520e02af039c2ba7029e8b529d48dbbd8f9c2d5971f509c1443e305ab08079a"
+    },
+    {
+      "path": "src/test/java/framework/SecretRedactor.java",
+      "sha256": "4d95690749503a1e5ce76b3b42f44ac46d535011377792b2f1690d2f0c04a696"
+    },
+    {
+      "path": "src/test/java/framework/TestDataFactory.java",
+      "sha256": "ec09fdf5408e23923080d1337b579b4b84af1df520f24622cc7d721a25b1c3cd"
+    },
+    {
+      "path": "src/test/java/generated/clients/GeneratedApiClient.java",
+      "sha256": "c564a36f461e06c6d51af182f01c73b76eae181798df8361a20ba4bfbbf8062a"
+    },
+    {
+      "path": "src/test/java/generated/listeners/WebTestReportListener.java",
+      "sha256": "f83e3371310f3ad5055912abc12e4da9aaf9b0852e229627f192eac713863a3c"
+    },
+    {
+      "path": "src/test/java/generated/scenarios/RecordsLifecycleScenarios_db5be31bTest.java",
+      "sha256": "3bde063329c9970607329182837a9e3e0f6e182888af38230c2812dbc740bf97"
+    },
+    {
+      "path": "src/test/resources/config/generation.json",
+      "sha256": "268ff0b266c11835a18e1040d6c117de2274b070c853ef920732dbfec0152991"
+    },
+    {
+      "path": "src/test/resources/flows/approved-plan.json",
+      "sha256": "8249b0fc803eacb0c59285379b97dcb9eb8471cb98ccec1eea179ce4fe4cb058"
+    },
+    {
+      "path": "src/test/resources/recordings/source-recordings.json",
+      "sha256": "70f90827d26a4ac5d7f8619f0680ff184204bbb925026f4b7001f7b072380e61"
+    },
+    {
+      "path": "testng.xml",
+      "sha256": "30e9fbd1a1a6f36777e2b85180053ae4a6612da6dd07d740121123523ad3b293"
+    }
+  ],
+  "planSha256": "c85d50e0b5673b853193d7fba867dc0f72c1ebddcf57383f81be2851c7cd7456",
+  "projectName": "webtest-broken-assertion",
+  "scenarioCount": 5,
+  "schemaVersion": "1.0",
+  "workflowCount": 1
+}

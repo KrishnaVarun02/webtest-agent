@@ -1,0 +1,677 @@
+{
+  "apiInventory": [
+    {
+      "method": "DELETE",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        401,
+        403,
+        404
+      ],
+      "operationId": "delete-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "normalizedPath": "/api/jobs/{jobId}",
+      "observedStatuses": [
+        200,
+        401,
+        404
+      ],
+      "operationId": "get-job",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "jobId",
+          "samples": [
+            "${JOB_ID}"
+          ],
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        401,
+        404
+      ],
+      "operationId": "get-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "get-records",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": []
+    },
+    {
+      "method": "POST",
+      "normalizedPath": "/api/login",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "post-login",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": []
+    },
+    {
+      "method": "POST",
+      "normalizedPath": "/api/records/{recordId}/process",
+      "observedStatuses": [
+        202,
+        401,
+        404
+      ],
+      "operationId": "post-process-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        201,
+        400,
+        401
+      ],
+      "operationId": "post-records",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": []
+    },
+    {
+      "method": "PUT",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        400,
+        401,
+        404
+      ],
+      "operationId": "put-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "assumptions": [],
+  "coverageLimitations": [
+    "Only approved workflows and recorded REST/JSON evidence are generated.",
+    "UI coverage maps only recorded page/action/operation correlations.",
+    "Destructive scenarios are excluded from the default TestNG suite."
+  ],
+  "dataDependencies": [
+    {
+      "confidence": "high",
+      "evidence": "The archive path reused the create response id.",
+      "operationId": "delete-record",
+      "sourceJsonPath": "$.id",
+      "sourceStepId": "create-record",
+      "stepId": "archive-record",
+      "targetLocation": "path[2]",
+      "targetStepId": "archive-record",
+      "variableName": "recordId",
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "confidence": "high",
+      "evidence": "The recorded read path reused the create response id.",
+      "operationId": "get-record",
+      "sourceJsonPath": "$.id",
+      "sourceStepId": "create-record",
+      "stepId": "get-record",
+      "targetLocation": "path",
+      "targetStepId": "get-record",
+      "variableName": "recordId",
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "confidence": "high",
+      "evidence": "The status path reused the process response job id.",
+      "operationId": "get-job",
+      "sourceJsonPath": "$.jobId",
+      "sourceStepId": "start-processing",
+      "stepId": "poll-job",
+      "targetLocation": "path",
+      "targetStepId": "poll-job",
+      "variableName": "jobId",
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "confidence": "high",
+      "evidence": "The process path reused the create response id.",
+      "operationId": "post-process-record",
+      "sourceJsonPath": "$.id",
+      "sourceStepId": "create-record",
+      "stepId": "start-processing",
+      "targetLocation": "path",
+      "targetStepId": "start-processing",
+      "variableName": "recordId",
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "confidence": "high",
+      "evidence": "The recorded update path reused the create response id.",
+      "operationId": "put-record",
+      "sourceJsonPath": "$.id",
+      "sourceStepId": "create-record",
+      "stepId": "update-record",
+      "targetLocation": "path",
+      "targetStepId": "update-record",
+      "variableName": "recordId",
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "confidence": "high",
+      "evidence": "The final read reused the create response id.",
+      "operationId": "get-record",
+      "sourceJsonPath": "$.id",
+      "sourceStepId": "create-record",
+      "stepId": "verify-processed-record",
+      "targetLocation": "path",
+      "targetStepId": "verify-processed-record",
+      "variableName": "recordId",
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    }
+  ],
+  "endpointExamples": [
+    {
+      "operationId": "delete-record",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-archive",
+      "request": {
+        "body": null,
+        "contentType": null,
+        "headers": {
+          "Authorization": "${API_TOKEN}",
+          "X-Allow-Destructive": "true"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-archive",
+      "response": {
+        "body": {
+          "archived": true,
+          "id": "${RECORD_ID}"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+    },
+    {
+      "operationId": "get-job",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-process",
+      "request": {
+        "body": null,
+        "contentType": null,
+        "headers": {
+          "Authorization": "${API_TOKEN}"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-job",
+      "response": {
+        "body": {
+          "jobId": "${JOB_ID}",
+          "recordId": "${RECORD_ID}",
+          "status": "completed"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/jobs/${JOB_ID}"
+    },
+    {
+      "operationId": "get-record",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-get",
+      "request": {
+        "body": null,
+        "contentType": null,
+        "headers": {
+          "Authorization": "${API_TOKEN}"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-get",
+      "response": {
+        "body": {
+          "id": "${RECORD_ID}",
+          "name": "Updated by generated test",
+          "quantity": 2,
+          "status": "processed"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+    },
+    {
+      "operationId": "get-records",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-list",
+      "request": {
+        "body": null,
+        "contentType": null,
+        "headers": {
+          "Authorization": "${API_TOKEN}"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-list",
+      "response": {
+        "body": {
+          "count": 0,
+          "items": []
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/records"
+    },
+    {
+      "operationId": "post-login",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-login",
+      "request": {
+        "body": {
+          "password": "${TEST_PASSWORD}",
+          "username": "${TEST_USERNAME}"
+        },
+        "contentType": "application/json",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-login",
+      "response": {
+        "body": {
+          "accessToken": "${API_TOKEN}",
+          "expiresIn": 3600,
+          "tokenType": "${API_TOKEN}"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/login"
+    },
+    {
+      "operationId": "post-process-record",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-process",
+      "request": {
+        "body": {},
+        "contentType": "application/json",
+        "headers": {
+          "Authorization": "${API_TOKEN}",
+          "Content-Type": "application/json"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-process",
+      "response": {
+        "body": {
+          "jobId": "${JOB_ID}",
+          "recordId": "${RECORD_ID}",
+          "status": "pending"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 202
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}/process"
+    },
+    {
+      "operationId": "post-records",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-create",
+      "request": {
+        "body": {
+          "name": "Generated record",
+          "quantity": 2
+        },
+        "contentType": "application/json",
+        "headers": {
+          "Authorization": "${API_TOKEN}",
+          "Content-Type": "application/json"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-create",
+      "response": {
+        "body": {
+          "id": "${RECORD_ID}",
+          "name": "Generated record",
+          "quantity": 2,
+          "status": "ready"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 201
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/records"
+    },
+    {
+      "operationId": "put-record",
+      "pageUrl": "${WEBTEST_BASE_URL}/",
+      "relatedUiActionId": "action-update",
+      "request": {
+        "body": {
+          "name": "Updated by generated test"
+        },
+        "contentType": "application/json",
+        "headers": {
+          "Authorization": "${API_TOKEN}",
+          "Content-Type": "application/json"
+        },
+        "queryParameters": {}
+      },
+      "requestId": "request-update",
+      "response": {
+        "body": {
+          "id": "${RECORD_ID}",
+          "name": "Updated by generated test",
+          "quantity": 2,
+          "status": "ready"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      },
+      "sanitizedUrl": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+    }
+  ],
+  "generatedFiles": [
+    ".env.example",
+    "README.md",
+    "generation-manifest.json",
+    "generation-report.json",
+    "pom.xml",
+    "src/test/java/framework/ApiKeyAuthProvider.java",
+    "src/test/java/framework/AssertionUtility.java",
+    "src/test/java/framework/AuthProvider.java",
+    "src/test/java/framework/AuthProviders.java",
+    "src/test/java/framework/BasicAuthProvider.java",
+    "src/test/java/framework/BearerTokenAuthProvider.java",
+    "src/test/java/framework/Config.java",
+    "src/test/java/framework/CookieAuthProvider.java",
+    "src/test/java/framework/CustomAuthProvider.java",
+    "src/test/java/framework/DynamicValueExtractor.java",
+    "src/test/java/framework/ExecutionTrace.java",
+    "src/test/java/framework/NoAuthProvider.java",
+    "src/test/java/framework/PollingUtility.java",
+    "src/test/java/framework/RequestDefinition.java",
+    "src/test/java/framework/RequestExecutor.java",
+    "src/test/java/framework/ScenarioContext.java",
+    "src/test/java/framework/SecretRedactor.java",
+    "src/test/java/framework/TestDataFactory.java",
+    "src/test/java/generated/clients/GeneratedApiClient.java",
+    "src/test/java/generated/listeners/WebTestReportListener.java",
+    "src/test/java/generated/scenarios/RecordsLifecycleScenarios_db5be31bTest.java",
+    "src/test/resources/config/generation.json",
+    "src/test/resources/flows/approved-plan.json",
+    "src/test/resources/recordings/source-recordings.json",
+    "testng.xml"
+  ],
+  "planAssumptions": [],
+  "planId": "plan-sample-v1",
+  "planUncertainties": [],
+  "schemaVersion": "1.0",
+  "sourceRecordingIds": [
+    "recording-sample-v1"
+  ],
+  "testMatrix": [
+    {
+      "enabled": true,
+      "expectedStatuses": [
+        200,
+        201,
+        200,
+        200
+      ],
+      "groups": [
+        "smoke"
+      ],
+      "kind": "positive",
+      "name": "Create update and read a record",
+      "scenarioId": "crud-positive",
+      "stepIds": [
+        "login",
+        "create-record",
+        "update-record",
+        "get-record"
+      ],
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "enabled": true,
+      "expectedStatuses": [
+        200,
+        400
+      ],
+      "groups": [
+        "negative"
+      ],
+      "kind": "missing_required_field",
+      "name": "Reject a create request missing name",
+      "scenarioId": "create-missing-name",
+      "stepIds": [
+        "login",
+        "create-record"
+      ],
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "enabled": true,
+      "expectedStatuses": [
+        401
+      ],
+      "groups": [
+        "negative"
+      ],
+      "kind": "unauthorized",
+      "name": "Reject an unauthenticated list request",
+      "scenarioId": "list-unauthorized",
+      "stepIds": [
+        "list-records-without-auth"
+      ],
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "enabled": true,
+      "expectedStatuses": [
+        200,
+        201,
+        202,
+        200,
+        200
+      ],
+      "groups": [
+        "smoke",
+        "asynchronous"
+      ],
+      "kind": "asynchronous",
+      "name": "Process a record and observe completion",
+      "scenarioId": "process-asynchronous",
+      "stepIds": [
+        "login",
+        "create-record",
+        "start-processing",
+        "poll-job",
+        "verify-processed-record"
+      ],
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    },
+    {
+      "enabled": true,
+      "expectedStatuses": [
+        200,
+        201,
+        200
+      ],
+      "groups": [
+        "destructive"
+      ],
+      "kind": "positive",
+      "name": "Archive a created record when explicitly enabled",
+      "scenarioId": "archive-destructive",
+      "stepIds": [
+        "login",
+        "create-record",
+        "archive-record"
+      ],
+      "workflowId": "records-lifecycle",
+      "workflowName": "Records lifecycle"
+    }
+  ],
+  "uiCoverageMap": [
+    {
+      "actionIds": [
+        "action-archive",
+        "action-create",
+        "action-get",
+        "action-list",
+        "action-login",
+        "action-process",
+        "action-update"
+      ],
+      "actions": [
+        {
+          "actionId": "action-archive",
+          "operationIds": [
+            "delete-record"
+          ]
+        },
+        {
+          "actionId": "action-create",
+          "operationIds": [
+            "post-records"
+          ]
+        },
+        {
+          "actionId": "action-get",
+          "operationIds": [
+            "get-record"
+          ]
+        },
+        {
+          "actionId": "action-list",
+          "operationIds": [
+            "get-records"
+          ]
+        },
+        {
+          "actionId": "action-login",
+          "operationIds": [
+            "post-login"
+          ]
+        },
+        {
+          "actionId": "action-process",
+          "operationIds": [
+            "get-job",
+            "get-record",
+            "post-process-record"
+          ]
+        },
+        {
+          "actionId": "action-update",
+          "operationIds": [
+            "put-record"
+          ]
+        }
+      ],
+      "pageUrl": "${WEBTEST_BASE_URL}/"
+    }
+  ],
+  "uncertainties": [],
+  "unsupportedTraffic": [],
+  "workflows": [
+    {
+      "assumptions": [],
+      "name": "Records lifecycle",
+      "stepCount": 9,
+      "uncertainties": [],
+      "workflowId": "records-lifecycle"
+    }
+  ]
+}

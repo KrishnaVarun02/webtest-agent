@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "webtest-agent-generator"
+version = "0.1.0"
+description = "Deterministic Java/TestNG project generator for WebTest Agent"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+webtest-generate = "webtest_generator.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["webtest_generator*"]
+

@@ -1,0 +1,37 @@
+{
+  "startedDateTime": "2026-01-10T12:00:00.000Z",
+  "time": 42.5,
+  "_resourceType": "fetch",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:3000/api/users/123?access_token=seed-access-123&expand=teams",
+    "headers": [
+      { "name": "Content-Type", "value": "application/json" },
+      { "name": "Authorization", "value": "Bearer seed-bearer-456" },
+      { "name": "X-API-Key", "value": "seed-api-key-789" },
+      { "name": "Cookie", "value": "session=seed-cookie-321" }
+    ],
+    "postData": {
+      "mimeType": "application/json",
+      "text": "{\"name\":\"Ada\",\"password\":\"seed-password-654\",\"profile\":{\"clientSecret\":\"seed-client-secret-987\"}}"
+    }
+  },
+  "response": {
+    "status": 201,
+    "statusText": "Created",
+    "headers": [
+      { "name": "Content-Type", "value": "application/json" },
+      { "name": "Set-Cookie", "value": "sid=seed-set-cookie-111" }
+    ],
+    "content": { "mimeType": "application/json" }
+  },
+  "timings": {
+    "blocked": 0.2,
+    "dns": -1,
+    "connect": -1,
+    "send": 1.5,
+    "wait": 37.8,
+    "receive": 3.0,
+    "ssl": -1
+  }
+}

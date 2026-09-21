@@ -1,0 +1,1083 @@
+{
+  "apiInventory": [
+    {
+      "asynchronousEvidence": true,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-process",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "req-job-pending",
+          "responseBody": {
+            "jobId": "22222222-2222-4222-8222-222222222222",
+            "recordId": "11111111-1111-4111-8111-111111111111",
+            "status": "pending"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:07.150000Z",
+          "url": "http://127.0.0.1:8765/api/jobs/22222222-2222-4222-8222-222222222222"
+        },
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-process",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "req-job-complete",
+          "responseBody": {
+            "completedAt": "2026-09-21T10:00:07Z",
+            "jobId": "22222222-2222-4222-8222-222222222222",
+            "recordId": "11111111-1111-4111-8111-111111111111",
+            "status": "completed"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:07.500000Z",
+          "url": "http://127.0.0.1:8765/api/jobs/22222222-2222-4222-8222-222222222222"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/jobs/{jobId}",
+      "observedStatuses": [
+        200
+      ],
+      "operationId": "op-a55a10a899412e73",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [
+        {
+          "evidence": "Observed a uuid value in path segment 3",
+          "location": "path",
+          "name": "jobId",
+          "samples": [
+            "22222222-2222-4222-8222-222222222222"
+          ],
+          "valueType": "uuid"
+        }
+      ],
+      "relatedUiActionIds": [
+        "act-process"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/jobs",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "jobId",
+          "recordId",
+          "status"
+        ],
+        "properties": {
+          "completedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "jobId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "recordId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-list",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "req-list",
+          "responseBody": {
+            "count": 1,
+            "items": [
+              {
+                "archived": false,
+                "createdAt": "2026-01-01T00:00:00Z",
+                "id": "00000000-0000-4000-8000-000000000001",
+                "name": "Seed record",
+                "quantity": 1,
+                "status": "ready"
+              }
+            ]
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:02.050000Z",
+          "url": "http://127.0.0.1:8765/api/records"
+        },
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-list",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {},
+          "requestId": "req-unauthorized",
+          "responseBody": {
+            "error": "valid bearer token required"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 401,
+          "timestamp": "2026-09-21T10:00:10Z",
+          "url": "http://127.0.0.1:8765/api/records"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "op-f225f9a654fb5eeb",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "act-list"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "count",
+          "items"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "items": {
+            "items": {
+              "observedRequired": [
+                "archived",
+                "createdAt",
+                "id",
+                "name",
+                "quantity",
+                "status"
+              ],
+              "properties": {
+                "archived": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "id": {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-create",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "req-get-created",
+          "responseBody": {
+            "archived": false,
+            "createdAt": "2026-09-21T10:00:03Z",
+            "id": "11111111-1111-4111-8111-111111111111",
+            "name": "Demo record",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:04Z",
+          "url": "http://127.0.0.1:8765/api/records/11111111-1111-4111-8111-111111111111"
+        },
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-process",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "req-final",
+          "responseBody": {
+            "archived": false,
+            "createdAt": "2026-09-21T10:00:03Z",
+            "id": "11111111-1111-4111-8111-111111111111",
+            "name": "Updated from UI",
+            "quantity": 2,
+            "status": "processed"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:08Z",
+          "url": "http://127.0.0.1:8765/api/records/11111111-1111-4111-8111-111111111111"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200
+      ],
+      "operationId": "op-9681bc7b8cf3264d",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [
+        {
+          "evidence": "Observed a uuid value in path segment 3",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "11111111-1111-4111-8111-111111111111"
+          ],
+          "valueType": "uuid"
+        }
+      ],
+      "relatedUiActionIds": [
+        "act-create",
+        "act-process"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "archived",
+          "createdAt",
+          "id",
+          "name",
+          "quantity",
+          "status"
+        ],
+        "properties": {
+          "archived": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": false,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-login",
+          "requestBody": {
+            "password": "${TEST_PASSWORD}",
+            "username": "${TEST_USERNAME}"
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Content-Type": "application/json"
+          },
+          "requestId": "req-login",
+          "responseBody": {
+            "accessToken": "${API_TOKEN}",
+            "expiresIn": 3600,
+            "tokenType": "${API_TOKEN}"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:01.050000Z",
+          "url": "http://127.0.0.1:8765/api/login"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/login",
+      "observedStatuses": [
+        200
+      ],
+      "operationId": "op-5bfaf725c613ef16",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "act-login"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/login",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "accessToken",
+          "expiresIn",
+          "tokenType"
+        ],
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "expiresIn": {
+            "type": "integer"
+          },
+          "tokenType": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-create",
+          "requestBody": {
+            "name": "Demo record",
+            "quantity": 2
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "req-create",
+          "responseBody": {
+            "archived": false,
+            "createdAt": "2026-09-21T10:00:03Z",
+            "id": "11111111-1111-4111-8111-111111111111",
+            "name": "Demo record",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 201,
+          "timestamp": "2026-09-21T10:00:03.050000Z",
+          "url": "http://127.0.0.1:8765/api/records"
+        },
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-create",
+          "requestBody": {
+            "quantity": 2
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "req-missing-name",
+          "responseBody": {
+            "error": "name is required"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 400,
+          "timestamp": "2026-09-21T10:00:09Z",
+          "url": "http://127.0.0.1:8765/api/records"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        201,
+        400
+      ],
+      "operationId": "op-927f4742b48e11b2",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "act-create"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "archived",
+          "createdAt",
+          "id",
+          "name",
+          "quantity",
+          "status"
+        ],
+        "properties": {
+          "archived": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": true,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-process",
+          "requestBody": {},
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "req-process",
+          "responseBody": {
+            "jobId": "22222222-2222-4222-8222-222222222222",
+            "recordId": "11111111-1111-4111-8111-111111111111",
+            "status": "pending"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 202,
+          "timestamp": "2026-09-21T10:00:07.050000Z",
+          "url": "http://127.0.0.1:8765/api/records/11111111-1111-4111-8111-111111111111/process"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/records/{recordId}/process",
+      "observedStatuses": [
+        202
+      ],
+      "operationId": "op-a352fc20c8aecf37",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [
+        {
+          "evidence": "Observed a uuid value in path segment 3",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "11111111-1111-4111-8111-111111111111"
+          ],
+          "valueType": "uuid"
+        }
+      ],
+      "relatedUiActionIds": [
+        "act-process"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records/{recordId}/process",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "jobId",
+          "recordId",
+          "status"
+        ],
+        "properties": {
+          "jobId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "recordId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "http://127.0.0.1:8765/",
+          "queryParameters": {},
+          "relatedUiActionId": "act-update",
+          "requestBody": {
+            "name": "Updated from UI"
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "req-update",
+          "responseBody": {
+            "archived": false,
+            "createdAt": "2026-09-21T10:00:03Z",
+            "id": "11111111-1111-4111-8111-111111111111",
+            "name": "Updated from UI",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-09-21T10:00:05.050000Z",
+          "url": "http://127.0.0.1:8765/api/records/11111111-1111-4111-8111-111111111111"
+        }
+      ],
+      "method": "PUT",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200
+      ],
+      "operationId": "op-046c131f2ac8b10b",
+      "origin": "http://127.0.0.1:8765",
+      "pathParameters": [
+        {
+          "evidence": "Observed a uuid value in path segment 3",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "11111111-1111-4111-8111-111111111111"
+          ],
+          "valueType": "uuid"
+        }
+      ],
+      "relatedUiActionIds": [
+        "act-update"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "observedRequired": [
+          "archived",
+          "createdAt",
+          "id",
+          "name",
+          "quantity",
+          "status"
+        ],
+        "properties": {
+          "archived": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stateChanging": true
+    }
+  ],
+  "assumptions": [
+    "Only recorded evidence is asserted; disabled candidates require human confirmation.",
+    "Generated negative cases mutate exactly one part of a known valid request.",
+    "The checked-in sample review duplicates the observed status GET for bounded polling and the observed final GET for business-state verification."
+  ],
+  "createdAt": "2026-09-21T13:48:56.319562Z",
+  "missingTestData": [
+    "API_AUTH"
+  ],
+  "planId": "plan-eb154d982c398b",
+  "recordingId": "rec-75af1fcd52a78ef764b0",
+  "revision": 3,
+  "schemaVersion": "1.0",
+  "status": "approved",
+  "suppliedTestData": {},
+  "uncertainties": [],
+  "updatedAt": "2026-09-21T13:48:56.353967Z",
+  "workflows": [
+    {
+      "approval": "approved",
+      "assumptions": [],
+      "cleanupStepIds": [],
+      "destructive": false,
+      "name": "Records lifecycle",
+      "scenarios": [
+        {
+          "assertions": [
+            {
+              "evidence": "Reviewed against the last matching value in the sanitized recording.",
+              "expected": "Updated from UI",
+              "kind": "value",
+              "path": "$.name"
+            },
+            {
+              "evidence": "Recorded ids used UUID format.",
+              "expected": "uuid",
+              "kind": "format",
+              "path": "$.id"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            201,
+            200,
+            200
+          ],
+          "groups": [
+            "smoke"
+          ],
+          "kind": "positive",
+          "mutation": null,
+          "name": "Create update and read a record",
+          "reviewNotes": [],
+          "scenarioId": "crud-positive",
+          "stepIds": [
+            "login",
+            "create-record",
+            "update-record",
+            "get-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "Observed validation response.",
+              "expected": "name is required",
+              "kind": "value",
+              "path": "$.error"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            400
+          ],
+          "groups": [
+            "negative"
+          ],
+          "kind": "missing_required_field",
+          "mutation": {
+            "evidence": "The captured validation response identified name as required.",
+            "location": "body",
+            "operation": "remove",
+            "path": "name",
+            "value": null
+          },
+          "name": "Reject a create request missing name",
+          "reviewNotes": [],
+          "scenarioId": "create-missing-name",
+          "stepIds": [
+            "login",
+            "create-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "Observed unauthorized response contained an error field.",
+              "expected": null,
+              "kind": "field_present",
+              "path": "$.error"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            401
+          ],
+          "groups": [
+            "negative"
+          ],
+          "kind": "unauthorized",
+          "mutation": {
+            "evidence": "The authenticated recording supplied a Bearer ${API_TOKEN} header.",
+            "location": "header",
+            "operation": "omit_auth",
+            "path": "Authorization",
+            "value": null
+          },
+          "name": "Reject an unauthenticated list request",
+          "reviewNotes": [],
+          "scenarioId": "list-unauthorized",
+          "stepIds": [
+            "list-records-without-auth"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "The recorded status endpoint reached completed.",
+              "expected": "completed",
+              "kind": "final_state",
+              "path": "$.status"
+            },
+            {
+              "evidence": "The final GET recorded the business-visible processed state.",
+              "expected": "processed",
+              "kind": "final_state",
+              "path": "$.status"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            201,
+            202,
+            200,
+            200
+          ],
+          "groups": [
+            "smoke",
+            "asynchronous"
+          ],
+          "kind": "asynchronous",
+          "mutation": null,
+          "name": "Process a record and observe completion",
+          "reviewNotes": [],
+          "scenarioId": "process-asynchronous",
+          "stepIds": [
+            "login",
+            "create-record",
+            "start-processing",
+            "poll-job",
+            "verify-processed-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        }
+      ],
+      "setupStepIds": [
+        "login"
+      ],
+      "steps": [
+        {
+          "asynchronous": false,
+          "dependencies": [],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {
+            "accessToken": "$.accessToken"
+          },
+          "name": "Log in with supplied test credentials",
+          "operationId": "op-5bfaf725c613ef16",
+          "order": 1,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "login",
+          "uiActionIds": [
+            "action-login"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [],
+          "destructive": false,
+          "expectedStatuses": [
+            201
+          ],
+          "extracts": {
+            "recordId": "$.id"
+          },
+          "name": "Create a record",
+          "operationId": "op-927f4742b48e11b2",
+          "order": 2,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "create-record",
+          "uiActionIds": [
+            "action-create"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The recorded update path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "update-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Update the created record",
+          "operationId": "op-046c131f2ac8b10b",
+          "order": 3,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "update-record",
+          "uiActionIds": [
+            "action-update"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The recorded read path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "get-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Retrieve final record state",
+          "operationId": "op-9681bc7b8cf3264d",
+          "order": 4,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "get-record",
+          "uiActionIds": [
+            "action-get"
+          ]
+        },
+        {
+          "asynchronous": true,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The process path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "start-processing",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            202
+          ],
+          "extracts": {
+            "jobId": "$.jobId"
+          },
+          "name": "Start asynchronous processing",
+          "operationId": "op-a352fc20c8aecf37",
+          "order": 5,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "start-processing",
+          "uiActionIds": [
+            "action-process"
+          ]
+        },
+        {
+          "asynchronous": true,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The status path reused the process response job id.",
+              "sourceJsonPath": "$.jobId",
+              "sourceStepId": "start-processing",
+              "targetLocation": "path",
+              "targetStepId": "poll-job",
+              "variableName": "jobId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Poll the processing job",
+          "operationId": "op-a55a10a899412e73",
+          "order": 6,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "poll-job",
+          "uiActionIds": [
+            "action-process"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The final read reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "verify-processed-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Verify processed record state",
+          "operationId": "op-9681bc7b8cf3264d",
+          "order": 7,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "verify-processed-record",
+          "uiActionIds": [
+            "action-process"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [],
+          "destructive": false,
+          "expectedStatuses": [
+            401
+          ],
+          "extracts": {},
+          "name": "List records without authentication",
+          "operationId": "op-f225f9a654fb5eeb",
+          "order": 8,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "list-records-without-auth",
+          "uiActionIds": [
+            "action-list"
+          ]
+        }
+      ],
+      "uncertainties": [],
+      "workflowId": "records-lifecycle"
+    }
+  ]
+}

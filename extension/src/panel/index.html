@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebTest Agent</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>WebTest Agent</h1>
+        <p>Authorized REST/JSON workflow capture</p>
+      </div>
+      <span id="recordingBadge" class="badge idle">Idle</span>
+    </header>
+
+    <div id="reloadNotice" class="notice warning" role="alert">
+      Reload the inspected page after opening DevTools, then start recording. This allows the action recorder to attach before capture.
+    </div>
+    <div id="status" class="notice" role="status" aria-live="polite">Configure at least one authorized origin.</div>
+
+    <details id="settings" open>
+      <summary>Capture and safety settings</summary>
+      <div class="settings-grid">
+        <label class="wide">Allowed origins <span class="required">required</span>
+          <textarea id="allowedOrigins" rows="2" placeholder="http://localhost:3000&#10;https://staging.example.com"></textarea>
+          <small>Exact HTTP(S) origins only. Recording and AI navigation are denied everywhere else.</small>
+        </label>
+        <label>Include URL patterns
+          <textarea id="includePatterns" rows="2" placeholder="*/api/*"></textarea>
+        </label>
+        <label>Exclude URL patterns
+          <textarea id="excludePatterns" rows="2" placeholder="*/analytics/*&#10;*/health"></textarea>
+        </label>
+        <label>Orchestrator URL
+          <input id="orchestratorUrl" type="url" value="http://127.0.0.1:8000">
+        </label>
+        <label>Maximum captured calls
+          <input id="maxOperations" type="number" min="1" max="1000" value="250">
+        </label>
+        <label class="wide">Local AI test data (JSON; never persisted or sent to the model)
+          <textarea id="testData" rows="3" spellcheck="false" placeholder='{"TEST_USERNAME":"tester@example.test","TEST_PASSWORD":"local-secret"}'></textarea>
+        </label>
+        <label>AI action limit
+          <input id="maxActions" type="number" min="1" max="50" value="20">
+        </label>
+        <label>AI runtime (seconds)
+          <input id="maxRuntime" type="number" min="10" max="600" value="180">
+        </label>
+        <label>AI retries
+          <input id="maxRetries" type="number" min="0" max="5" value="2">
+        </label>
+        <label>Repeated-state limit
+          <input id="maxRepeatedStates" type="number" min="1" max="10" value="3">
+        </label>
+      </div>
+    </details>
+
+    <nav class="controls" aria-label="Recording controls">
+      <button id="start" class="primary">Start</button>
+      <button id="stop" disabled>Stop</button>
+      <button id="clear">Clear</button>
+      <button id="export">Export JSON</button>
+      <button id="exportHar">Export HAR</button>
+      <button id="aiExplore" disabled>AI Explore</button>
+      <button id="review" disabled>Review</button>
+      <button id="generate" disabled>Generate</button>
+    </nav>
+
+    <section class="summary" aria-label="Recording summary">
+      <div><strong id="actionCount">0</strong><span>UI actions</span></div>
+      <div><strong id="operationCount">0</strong><span>API calls</span></div>
+      <div><strong id="includedCount">0</strong><span>included</span></div>
+      <div><strong id="excludedCount">0</strong><span>excluded</span></div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <div><h2>Captured operations</h2><p>Uncheck calls that should not be sent for planning.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Use</th><th>Method</th><th>Normalized path</th><th>Status</th><th>Type</th><th>Related action</th></tr></thead>
+          <tbody id="operations"><tr><td colspan="6" class="empty">No API calls captured yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="reviewSection" hidden>
+      <div class="section-heading">
+        <div><h2>Editable scenario plan</h2><p>Review workflows, dependencies, assertions, risks, assumptions, and negative mutations before approval.</p></div>
+      </div>
+      <textarea id="planEditor" class="code-editor" rows="20" spellcheck="false"></textarea>
+      <label class="approval"><input id="approvePlan" type="checkbox"> I reviewed and approve this plan for code generation.</label>
+      <pre id="generationResult" hidden></pre>
+    </section>
+
+    <footer>
+      Only test sites you own or are explicitly authorized to test. AI exploration cannot solve CAPTCHAs, make purchases, upload files, delete accounts, bypass authentication, or execute model-provided JavaScript.
+    </footer>
+    <script src="panel.js"></script>
+  </body>
+</html>

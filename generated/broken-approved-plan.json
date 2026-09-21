@@ -1,0 +1,957 @@
+{
+  "apiInventory": [
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": false,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-login",
+          "requestBody": {
+            "password": "${TEST_PASSWORD}",
+            "username": "${TEST_USERNAME}"
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-login",
+          "responseBody": {
+            "accessToken": "${API_TOKEN}",
+            "expiresIn": 3600,
+            "tokenType": "Bearer"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-01-01T00:00:00Z",
+          "url": "${WEBTEST_BASE_URL}/api/login"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/login",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "post-login",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "action-login"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/login",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "accessToken",
+          "tokenType"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-create",
+          "requestBody": {
+            "name": "Generated record",
+            "quantity": 2
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-create",
+          "responseBody": {
+            "id": "${RECORD_ID}",
+            "name": "Generated record",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 201,
+          "timestamp": "2026-01-01T00:00:01Z",
+          "url": "${WEBTEST_BASE_URL}/api/records"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        201,
+        400,
+        401
+      ],
+      "operationId": "post-records",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "action-create"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-update",
+          "requestBody": {
+            "name": "Updated by generated test"
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-update",
+          "responseBody": {
+            "id": "${RECORD_ID}",
+            "name": "Updated by generated test",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-01-01T00:00:02Z",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+        }
+      ],
+      "method": "PUT",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        400,
+        401,
+        404
+      ],
+      "operationId": "put-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-update"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records/{recordId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-get",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}"
+          },
+          "requestId": "request-get",
+          "responseBody": {
+            "id": "${RECORD_ID}",
+            "name": "Updated by generated test",
+            "quantity": 2,
+            "status": "processed"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-01-01T00:00:03Z",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        401,
+        404
+      ],
+      "operationId": "get-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-get"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records/{recordId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": true,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-process",
+          "requestBody": {},
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-process",
+          "responseBody": {
+            "jobId": "${JOB_ID}",
+            "recordId": "${RECORD_ID}",
+            "status": "pending"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 202,
+          "timestamp": "2026-01-01T00:00:04Z",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}/process"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/records/{recordId}/process",
+      "observedStatuses": [
+        202,
+        401,
+        404
+      ],
+      "operationId": "post-process-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-process"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records/{recordId}/process",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "jobId",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": true,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-process",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}"
+          },
+          "requestId": "request-job",
+          "responseBody": {
+            "jobId": "${JOB_ID}",
+            "recordId": "${RECORD_ID}",
+            "status": "completed"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-01-01T00:00:05Z",
+          "url": "${WEBTEST_BASE_URL}/api/jobs/${JOB_ID}"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/jobs/{jobId}",
+      "observedStatuses": [
+        200,
+        401,
+        404
+      ],
+      "operationId": "get-job",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "jobId",
+          "samples": [
+            "${JOB_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-process"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/jobs/{jobId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "jobId",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-list",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}"
+          },
+          "requestId": "request-list",
+          "responseBody": {
+            "count": 0,
+            "items": []
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-01-01T00:00:06Z",
+          "url": "${WEBTEST_BASE_URL}/api/records"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "get-records",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "action-list"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "items",
+          "count"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-archive",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "Bearer ${API_TOKEN}",
+            "X-Allow-Destructive": "true"
+          },
+          "requestId": "request-archive",
+          "responseBody": {
+            "archived": true,
+            "id": "${RECORD_ID}"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "2026-01-01T00:00:07Z",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+        }
+      ],
+      "method": "DELETE",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        401,
+        403,
+        404
+      ],
+      "operationId": "delete-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-archive"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records/{recordId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "archived"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    }
+  ],
+  "assumptions": [],
+  "createdAt": "2026-01-01T00:00:00Z",
+  "missingTestData": [
+    "TEST_USERNAME",
+    "TEST_PASSWORD"
+  ],
+  "planId": "plan-sample-v1",
+  "recordingId": "recording-sample-v1",
+  "revision": 1,
+  "schemaVersion": "1.0",
+  "status": "approved",
+  "suppliedTestData": {
+    "TEST_PASSWORD": "${TEST_PASSWORD}",
+    "TEST_USERNAME": "${TEST_USERNAME}"
+  },
+  "uncertainties": [],
+  "updatedAt": "2026-01-01T00:00:00Z",
+  "workflows": [
+    {
+      "approval": "approved",
+      "assumptions": [],
+      "cleanupStepIds": [
+        "archive-record"
+      ],
+      "destructive": true,
+      "name": "Records lifecycle",
+      "scenarios": [
+        {
+          "assertions": [
+            {
+              "evidence": "Deliberately broken by the failure-report demonstration.",
+              "expected": "INTENTIONALLY WRONG EXPECTATION",
+              "kind": "value",
+              "path": "$.name"
+            },
+            {
+              "evidence": "Recorded ids used UUID format.",
+              "expected": "uuid",
+              "kind": "format",
+              "path": "$.id"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            201,
+            200,
+            200
+          ],
+          "groups": [
+            "smoke"
+          ],
+          "kind": "positive",
+          "mutation": null,
+          "name": "Create update and read a record",
+          "reviewNotes": [],
+          "scenarioId": "crud-positive",
+          "stepIds": [
+            "login",
+            "create-record",
+            "update-record",
+            "get-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "Observed validation response.",
+              "expected": "name is required",
+              "kind": "value",
+              "path": "$.error"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            400
+          ],
+          "groups": [
+            "negative"
+          ],
+          "kind": "missing_required_field",
+          "mutation": {
+            "evidence": "The captured validation response identified name as required.",
+            "location": "body",
+            "operation": "remove",
+            "path": "name",
+            "value": null
+          },
+          "name": "Reject a create request missing name",
+          "reviewNotes": [],
+          "scenarioId": "create-missing-name",
+          "stepIds": [
+            "login",
+            "create-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "Observed unauthorized response contained an error field.",
+              "expected": null,
+              "kind": "field_present",
+              "path": "$.error"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            401
+          ],
+          "groups": [
+            "negative"
+          ],
+          "kind": "unauthorized",
+          "mutation": {
+            "evidence": "The authenticated recording supplied a bearer authorization header.",
+            "location": "header",
+            "operation": "omit_auth",
+            "path": "Authorization",
+            "value": null
+          },
+          "name": "Reject an unauthenticated list request",
+          "reviewNotes": [],
+          "scenarioId": "list-unauthorized",
+          "stepIds": [
+            "list-records-without-auth"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "The recorded status endpoint reached completed.",
+              "expected": "completed",
+              "kind": "final_state",
+              "path": "$.status"
+            },
+            {
+              "evidence": "The final GET recorded the business-visible processed state.",
+              "expected": "processed",
+              "kind": "final_state",
+              "path": "$.status"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            201,
+            202,
+            200,
+            200
+          ],
+          "groups": [
+            "smoke",
+            "asynchronous"
+          ],
+          "kind": "asynchronous",
+          "mutation": null,
+          "name": "Process a record and observe completion",
+          "reviewNotes": [],
+          "scenarioId": "process-asynchronous",
+          "stepIds": [
+            "login",
+            "create-record",
+            "start-processing",
+            "poll-job",
+            "verify-processed-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        },
+        {
+          "assertions": [
+            {
+              "evidence": "The recorded archive response confirmed the archived state.",
+              "expected": true,
+              "kind": "value",
+              "path": "$.archived"
+            }
+          ],
+          "enabled": true,
+          "expectedStatuses": [
+            200,
+            201,
+            200
+          ],
+          "groups": [
+            "destructive"
+          ],
+          "kind": "positive",
+          "mutation": null,
+          "name": "Archive a created record when explicitly enabled",
+          "reviewNotes": [
+            "Excluded by default and guarded by ALLOW_DESTRUCTIVE_TESTS."
+          ],
+          "scenarioId": "archive-destructive",
+          "stepIds": [
+            "login",
+            "create-record",
+            "archive-record"
+          ],
+          "uncertainty": null,
+          "workflowId": "records-lifecycle"
+        }
+      ],
+      "setupStepIds": [
+        "login"
+      ],
+      "steps": [
+        {
+          "asynchronous": false,
+          "dependencies": [],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {
+            "accessToken": "$.accessToken"
+          },
+          "name": "Log in with supplied test credentials",
+          "operationId": "post-login",
+          "order": 1,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "login",
+          "uiActionIds": [
+            "action-login"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [],
+          "destructive": false,
+          "expectedStatuses": [
+            201
+          ],
+          "extracts": {
+            "recordId": "$.id"
+          },
+          "name": "Create a record",
+          "operationId": "post-records",
+          "order": 2,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "create-record",
+          "uiActionIds": [
+            "action-create"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The recorded update path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "update-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Update the created record",
+          "operationId": "put-record",
+          "order": 3,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "update-record",
+          "uiActionIds": [
+            "action-update"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The recorded read path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "get-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Retrieve final record state",
+          "operationId": "get-record",
+          "order": 4,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "get-record",
+          "uiActionIds": [
+            "action-get"
+          ]
+        },
+        {
+          "asynchronous": true,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The process path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "start-processing",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            202
+          ],
+          "extracts": {
+            "jobId": "$.jobId"
+          },
+          "name": "Start asynchronous processing",
+          "operationId": "post-process-record",
+          "order": 5,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "start-processing",
+          "uiActionIds": [
+            "action-process"
+          ]
+        },
+        {
+          "asynchronous": true,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The status path reused the process response job id.",
+              "sourceJsonPath": "$.jobId",
+              "sourceStepId": "start-processing",
+              "targetLocation": "path",
+              "targetStepId": "poll-job",
+              "variableName": "jobId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Poll the processing job",
+          "operationId": "get-job",
+          "order": 6,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "poll-job",
+          "uiActionIds": [
+            "action-process"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The final read reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path",
+              "targetStepId": "verify-processed-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": false,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Verify processed record state",
+          "operationId": "get-record",
+          "order": 7,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "verify-processed-record",
+          "uiActionIds": [
+            "action-process"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [],
+          "destructive": false,
+          "expectedStatuses": [
+            401
+          ],
+          "extracts": {},
+          "name": "List records without authentication",
+          "operationId": "get-records",
+          "order": 8,
+          "reviewNotes": [],
+          "stateChanging": false,
+          "stepId": "list-records-without-auth",
+          "uiActionIds": [
+            "action-list"
+          ]
+        },
+        {
+          "asynchronous": false,
+          "dependencies": [
+            {
+              "confidence": "high",
+              "evidence": "The archive path reused the create response id.",
+              "sourceJsonPath": "$.id",
+              "sourceStepId": "create-record",
+              "targetLocation": "path[2]",
+              "targetStepId": "archive-record",
+              "variableName": "recordId"
+            }
+          ],
+          "destructive": true,
+          "expectedStatuses": [
+            200
+          ],
+          "extracts": {},
+          "name": "Archive the created record",
+          "operationId": "delete-record",
+          "order": 9,
+          "reviewNotes": [],
+          "stateChanging": true,
+          "stepId": "archive-record",
+          "uiActionIds": [
+            "action-archive"
+          ]
+        }
+      ],
+      "uncertainties": [],
+      "workflowId": "records-lifecycle"
+    }
+  ]
+}

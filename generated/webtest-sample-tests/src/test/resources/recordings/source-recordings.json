@@ -1,0 +1,512 @@
+{
+  "operations": [
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": false,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-login",
+          "requestBody": {
+            "password": "${TEST_PASSWORD}",
+            "username": "${TEST_USERNAME}"
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-login",
+          "responseBody": {
+            "accessToken": "${API_TOKEN}",
+            "expiresIn": 3600,
+            "tokenType": "${API_TOKEN}"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/login"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/login",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "post-login",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "action-login"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/login",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "accessToken",
+          "tokenType"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-create",
+          "requestBody": {
+            "name": "Generated record",
+            "quantity": 2
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-create",
+          "responseBody": {
+            "id": "${RECORD_ID}",
+            "name": "Generated record",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 201,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/records"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        201,
+        400,
+        401
+      ],
+      "operationId": "post-records",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "action-create"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-update",
+          "requestBody": {
+            "name": "Updated by generated test"
+          },
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-update",
+          "responseBody": {
+            "id": "${RECORD_ID}",
+            "name": "Updated by generated test",
+            "quantity": 2,
+            "status": "ready"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+        }
+      ],
+      "method": "PUT",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        400,
+        401,
+        404
+      ],
+      "operationId": "put-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-update"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records/{recordId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-get",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "request-get",
+          "responseBody": {
+            "id": "${RECORD_ID}",
+            "name": "Updated by generated test",
+            "quantity": 2,
+            "status": "processed"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        401,
+        404
+      ],
+      "operationId": "get-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-get"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records/{recordId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": true,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-process",
+          "requestBody": {},
+          "requestContentType": "application/json",
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "Content-Type": "application/json"
+          },
+          "requestId": "request-process",
+          "responseBody": {
+            "jobId": "${JOB_ID}",
+            "recordId": "${RECORD_ID}",
+            "status": "pending"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 202,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}/process"
+        }
+      ],
+      "method": "POST",
+      "normalizedPath": "/api/records/{recordId}/process",
+      "observedStatuses": [
+        202,
+        401,
+        404
+      ],
+      "operationId": "post-process-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-process"
+      ],
+      "requestContentTypes": [
+        "application/json"
+      ],
+      "resourcePattern": "/api/records/{recordId}/process",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "jobId",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    },
+    {
+      "asynchronousEvidence": true,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-process",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "request-job",
+          "responseBody": {
+            "jobId": "${JOB_ID}",
+            "recordId": "${RECORD_ID}",
+            "status": "completed"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/jobs/${JOB_ID}"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/jobs/{jobId}",
+      "observedStatuses": [
+        200,
+        401,
+        404
+      ],
+      "operationId": "get-job",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "jobId",
+          "samples": [
+            "${JOB_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-process"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/jobs/{jobId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "jobId",
+          "status"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-list",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}"
+          },
+          "requestId": "request-list",
+          "responseBody": {
+            "count": 0,
+            "items": []
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/records"
+        }
+      ],
+      "method": "GET",
+      "normalizedPath": "/api/records",
+      "observedStatuses": [
+        200,
+        401
+      ],
+      "operationId": "get-records",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [],
+      "relatedUiActionIds": [
+        "action-list"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "items",
+          "count"
+        ],
+        "type": "object"
+      },
+      "stateChanging": false
+    },
+    {
+      "asynchronousEvidence": false,
+      "authEvidence": true,
+      "examples": [
+        {
+          "pageUrl": "${WEBTEST_BASE_URL}/",
+          "queryParameters": {},
+          "relatedUiActionId": "action-archive",
+          "requestBody": null,
+          "requestContentType": null,
+          "requestHeaders": {
+            "Authorization": "${API_TOKEN}",
+            "X-Allow-Destructive": "true"
+          },
+          "requestId": "request-archive",
+          "responseBody": {
+            "archived": true,
+            "id": "${RECORD_ID}"
+          },
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          },
+          "responseStatus": 200,
+          "timestamp": "${RESOURCE_ID}",
+          "url": "${WEBTEST_BASE_URL}/api/records/${RECORD_ID}"
+        }
+      ],
+      "method": "DELETE",
+      "normalizedPath": "/api/records/{recordId}",
+      "observedStatuses": [
+        200,
+        401,
+        403,
+        404
+      ],
+      "operationId": "delete-record",
+      "origin": "${WEBTEST_BASE_URL}",
+      "pathParameters": [
+        {
+          "evidence": "Observed UUID-like segment.",
+          "location": "path",
+          "name": "recordId",
+          "samples": [
+            "${RECORD_ID}"
+          ],
+          "valueType": "string"
+        }
+      ],
+      "relatedUiActionIds": [
+        "action-archive"
+      ],
+      "requestContentTypes": [],
+      "resourcePattern": "/api/records/{recordId}",
+      "responseContentTypes": [
+        "application/json"
+      ],
+      "responseSchema": {
+        "required": [
+          "id",
+          "archived"
+        ],
+        "type": "object"
+      },
+      "stateChanging": true
+    }
+  ],
+  "recordingId": "recording-sample-v1",
+  "schemaVersion": "1.0"
+}
